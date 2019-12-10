@@ -28,5 +28,5 @@ import torch
 # position = torch.tensor([range(82)])
 # print(position.shape)
 
-for i in range(0,100,5):
+for i in range(0, 100, 5):
     print(i)

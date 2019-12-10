@@ -21,18 +21,9 @@ class GPT2(nn.Module):
         self.output_layer = nn.Linear(cfg.embed_dim, cfg.vocab_num, bias=False)
 
     def forward(self, data, positon):
-        # print(data.shape)
-        # print(data[:, :, 0])
-        # print(data[:, :, 0].shape)
-        # print(data[:, :, 0])
         vocab = self.vocab_embed(data[:, :, 0])
-        # vocab = torch.stack([vocab, data[:, 1]], -1)
         positon = self.positon_embed(positon)
         type = self.type_embed(data[:, :, 1])
-        # drop = self.drop_layer(vostridecab + positon)
-        # print(vocab.shape)
-        # print(positon.shape)
-        # print(type.shape)
         drop = self.drop_layer(vocab + positon + type)
         block = self.block_layer(drop)
         output = self.output_layer(block)

@@ -4,6 +4,7 @@ import torch
 import config as cfg
 
 
+# 解析json文件并保存
 def resolveJson(path, save_path):
     file = open(path, "r", encoding="UTF-8")
     contents = file.readlines()

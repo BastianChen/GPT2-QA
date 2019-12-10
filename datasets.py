@@ -23,14 +23,6 @@ class MyDataset(Dataset):
                     if words_length > cfg.pos_num + 1:
                         self.dataset.append(words[words_length - cfg.pos_num - 1:])
                         self.type_num.append(type_words[words_length - cfg.pos_num - 1:])
-                        # for i in range(300):
-                        #     if i == 0:
-                        #         self.dataset.append(words[words_length - cfg.pos_num - 1:])
-                        #         self.type_num.append(type_words[words_length - cfg.pos_num - 1:])
-                        #     else:
-                        #         self.dataset.append(words[words_length - cfg.pos_num - 1 - i:-i])
-                        #         self.type_num.append(type_words[words_length - cfg.pos_num - 1 - i:-i])
-                    # print(len(self.dataset))
 
     def __len__(self):
         return len(self.dataset)
@@ -38,11 +30,8 @@ class MyDataset(Dataset):
     def __getitem__(self, item):
         text_index = torch.tensor(self.dataset[item])
         type_index = torch.tensor(self.type_num[item])
-        # print(text_index.shape)
-        # print(type_index.shape)
         data = torch.stack([text_index, type_index], -1)
         return data[0:-1], data[1:]
-        # return text_index[0:-1], text_index[1:], type_index[0:-1], type_index[1:]
 
 
 if __name__ == '__main__':
