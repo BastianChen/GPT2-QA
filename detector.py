@@ -46,9 +46,7 @@ class Detector:
 
     def detect(self):
         title = input("请输入问题：")
-        # desc = input("请输入问题的详细描述：")
         # title = '脚上长了一些泡，不痛不痒比较硬。'
-        # desc = '昨天好像吃到什么不太的东西了,一直拉肚子,搞的我睡觉也睡不好,索性就起来了, 我该吃些什么东西调理下'
         title = '♫' + title
         answer = '♬'
         self.getVocab(title.strip(), answer.strip())
