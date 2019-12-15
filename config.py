@@ -1,10 +1,10 @@
 block_num = 6  # 定义解码器的数量
 head_num = 12  # 定义几个多头注意力
 embed_dim = 768  # 输入数据的长度
-vocab_num = 2607  # 字典字数
+vocab_num = 197  # 字典字数
 pos_num = 500  # 输出内容最大长度
-type_num = 4  # 句编码，可以用4个句子
-stride = 5
+type_num = 2  # 句编码，可以用3个句子
+stride = 5  # 隔多少步重新造样本
 
 # 训练过拟合版本时使用的路径
 ORIGINAL_PATH = r"data/tokenized/original"

@@ -37,7 +37,7 @@ class Block(nn.Module):
         self.layer_normal1 = nn.LayerNorm(cfg.embed_dim)
         self.attention_layer = Attention(isMask)
         self.layer_normal2 = nn.LayerNorm(cfg.embed_dim)
-        # 扩大参数量
+        # 扩大参数量以及将多个注意力汇总在一起
         self.output_layer = nn.Sequential(
             nn.Linear(cfg.embed_dim, cfg.head_num * cfg.embed_dim),
             nn.LeakyReLU(),
@@ -64,7 +64,7 @@ class Attention(nn.Module):
         # 把一个词复制三份，Q,K,V
         self.copy_layer = nn.Linear(cfg.embed_dim, cfg.embed_dim * 3)
         self.drop_layer = nn.Dropout(0.1)
-        # 在计算完注意力后来个线性层来计算注意力
+        # 在计算完注意力后来个线性层来训练单个注意力
         self.output_layer = nn.Linear(cfg.embed_dim, cfg.embed_dim)
         if self.isMask:
             # 使用tril删除右上角的数据，并使用register_buffer保存mask状态，使它不在bp算法被当作参数更新，但可以被传入CUAD或CPU进行计算，保存时会被当作权重保存，但不参与训练

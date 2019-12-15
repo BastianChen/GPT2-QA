@@ -24,6 +24,8 @@ for filename in os.listdir(text_path):
             word = file.read(1)
 
 with open(dictionary_path, "w+", encoding="utf-8") as f:
-    f.write("[START] [SEQ] [UNK] [PAD] [END] ♫ ♩ ♬ ")
+    # f.write("[START] [SEQ] [UNK] [PAD] [END] ♫ ♩ ♬ ")
+    # f.write("[SEQ] [UNK] [PAD] [END] ♫ ♩ ♬ ")
+    f.write("[SEQ] [UNK] [PAD] [END] ♫ ♬ ")
     f.write(" ".join(words))
     f.flush()

@@ -39,7 +39,7 @@ if __name__ == '__main__':
     # print(len(myDataset))
     # print(myDataset[0][0])
     # print(myDataset[1][0].shape)
-    data, label = myDataset[202]
+    data, label = myDataset[0]
     # print(data)
     # print(label)
     print(data.shape)

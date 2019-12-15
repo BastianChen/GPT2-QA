@@ -56,5 +56,5 @@ class Trainer:
 
 
 if __name__ == '__main__':
-    trainer = Trainer("models/net_qa.pth")
+    trainer = Trainer("models/net_qa_new.pth")
     trainer.train()
