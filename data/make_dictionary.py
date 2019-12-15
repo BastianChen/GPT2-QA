@@ -16,7 +16,7 @@ for filename in os.listdir(text_path):
     with open(os.path.join(text_path, filename), "r+", encoding="utf-8") as file:
         word = file.read(1)
         while word:
-            if word == '\n' or word == '\r' or word == ' ':
+            if word == '\n' or word == '\r' or word == ' ' or word == '♫' or word == '♬':
                 # words.add('[SEP]')
                 pass
             else:

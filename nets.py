@@ -68,7 +68,8 @@ class Attention(nn.Module):
         self.output_layer = nn.Linear(cfg.embed_dim, cfg.embed_dim)
         if self.isMask:
             # 使用tril删除右上角的数据，并使用register_buffer保存mask状态，使它不在bp算法被当作参数更新，但可以被传入CUAD或CPU进行计算，保存时会被当作权重保存，但不参与训练
-            self.register_buffer("mask", torch.tril(torch.ones(cfg.pos_num, cfg.pos_num)))
+            # self.register_buffer("mask", torch.tril(torch.ones(cfg.pos_num, cfg.pos_num)))
+            self.mask = torch.tril(torch.ones(cfg.pos_num, cfg.pos_num)).cuda()
 
     def forward(self, data):
         # n,s,768-->n,s,768*3
