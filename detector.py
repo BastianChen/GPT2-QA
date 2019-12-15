@@ -13,44 +13,6 @@ class Detector:
         self.net.load_state_dict(torch.load(net_path))
         self.net.eval()
 
-    # def getVocab(self, title, desc, answer):
-    #     with open(self.dictionary_path, "r+", encoding="utf-8") as file:
-    #         dics = file.read().strip().split()
-    #         words = title + desc + answer
-    #         vocab_list = []
-    #         title_len = len(title)
-    #         desc_len = len(desc)
-    #         title_type = torch.ones(title_len, dtype=torch.long)
-    #         desc_type = torch.ones(desc_len, dtype=torch.long)
-    #         desc_type[:] = 2
-    #         answer_type = torch.ones(1, dtype=torch.long)
-    #         answer_type[:] = 3
-    #         type_num = torch.cat((title_type, desc_type), -1)
-    #         type_num = torch.cat((type_num, answer_type), -1)
-    #         type_num = type_num.reshape(type_num.size(0), 1)
-    #         for word in words:
-    #             if word == '\n' or word == '\r' or word == '\t' or ord(word) == 12288:
-    #                 vocab_list.append(1)
-    #             elif word == ' ':
-    #                 vocab_list.append(3)
-    #             elif word == '♫':
-    #                 vocab_list.append(5)
-    #             elif word == '♩':
-    #                 vocab_list.append(6)
-    #             elif word == '♬':
-    #                 vocab_list.append(7)
-    #             elif word == 'Ψ':
-    #                 vocab_list.append(4)
-    #             else:
-    #                 try:
-    #                     vocab_list.append(dics.index(word))
-    #                 except:
-    #                     vocab_list.append(2)
-    #         vocab = torch.tensor(np.stack(vocab_list), dtype=torch.long)
-    #         vocab = vocab.reshape(vocab.size(0), 1)
-    #         self.vocab = torch.cat((vocab, type_num), -1).unsqueeze(0).to(self.device)
-    #         self.position = torch.tensor([range(self.vocab.size(0))]).to(self.device)
-
     def getVocab(self, title, answer):
         with open(self.dictionary_path, "r+", encoding="utf-8") as file:
             dics = file.read().strip().split()
@@ -88,9 +50,7 @@ class Detector:
         # title = '脚上长了一些泡，不痛不痒比较硬。'
         # desc = '昨天好像吃到什么不太的东西了,一直拉肚子,搞的我睡觉也睡不好,索性就起来了, 我该吃些什么东西调理下'
         title = '♫' + title
-        # desc = '♩' + desc
         answer = '♬'
-        # self.getVocab(title.strip(), desc.strip(), answer.strip())
         self.getVocab(title.strip(), answer.strip())
         print("回答如下：")
         output_list = []
